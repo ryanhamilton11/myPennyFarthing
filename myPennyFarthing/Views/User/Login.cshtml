@@ -1,0 +1,17 @@
+﻿@model User
+
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+
+<h3 class="text-center">Login</h3>
+<hr>
+<div class="card text-center bg-light">
+    <form method="post" class="card-body" id="bootstrapForm">
+        <input asp-for="UserName" type="email" placeholder="Email Address" required />
+        <br />
+        <input asp-for="Password" type="password" placeholder="Password" required />
+        <br />
+        <button type="submit" class="btn btn-secondary">Login</button>
+    </form>
+</div>

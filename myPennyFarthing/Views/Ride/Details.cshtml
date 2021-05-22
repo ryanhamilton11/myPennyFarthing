@@ -1,0 +1,84 @@
+﻿@model Ride
+
+<fieldset class="border d-inline-block mb-3 mr-4 p-3 pt-0 shadow align-top">
+    <legend> Ride Details </legend>
+
+    <table>
+        <tbody>
+            <tr>
+                <th class="pr-1 text-right"> Date: </th>
+                <td class="pl-1"> @Model.Date.ToString("MM-dd-yyy") </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Time: </th>
+                <td class="pl-1"> @Model.Time </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Distance: </th>
+                <td class="pl-1"> @Model.Distance.ToString("N2") </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Average Cadence: </th>
+                <td class="pl-1"> @Model.AvgCadence </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Average Heart Rate: </th>
+                <td class="pl-1"> @Model.AvgHR </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Average Speed: </th>
+                <td class="pl-1"> @Model.AvgSpeed.ToString("N1") </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Total Ascent: </th>
+                <td class="pl-1"> @Model.Ascent </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Total Descent: </th>
+                <td class="pl-1"> @Model.Descent </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Highest Grade: </th>
+                <td class="pl-1"> @Model.HighGrade.ToString("N1") </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Lowest Grade: </th>
+                <td class="pl-1"> @Model.LowGrade.ToString("N1") </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Bike: </th>
+                <td class="pl-1">
+                    @Model.Bike.Year
+                    @Model.Bike.Make
+                    @Model.Bike.Model
+                </td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-center" colspan="2">
+                    <a asp-controller="Ride" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-primary mr-1"> Edit </a>
+                    <a asp-controller="Ride" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-danger ml-1 mr-1"> Delete </a>
+                    <a asp-controller="Ride" asp-action="Index" class="btn btn-sm btn-light ml-1"> Back </a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</fieldset>

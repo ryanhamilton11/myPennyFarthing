@@ -1,0 +1,138 @@
+﻿@model Bike
+
+<fieldset class="border d-inline-block mb-3 mr-4 p-3 pt-0 shadow align-top">
+    <legend> Bike Details </legend>
+
+    <table>
+        <tbody>
+            <tr>
+                <th class="pr-1 text-left"> Year: </th>
+                <td class="pl-"> @Model.Year </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-left"> Make: </th>
+                <td class="pl-1"> @Model.Make </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-left"> Model: </th>
+                <td class="pl-1"> @Model.Model </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-left"> Cost: </th>
+                <td class="pl-1"> @Model.Color </td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-center" colspan="2">
+                    <a asp-controller="Bike" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-primary mr-1"> Edit </a>
+                    <a asp-controller="Bike" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-danger ml-1 mr-1"> Delete </a>
+                    <a asp-controller="Bike" asp-action="Index" class="btn btn-sm btn-light ml-1"> Back </a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</fieldset>
+
+
+<fieldset class="border d-inline-block mb-3 mr-4 p-3 pt-0 shadow align-top">
+    <legend> Maintenance Actions </legend>
+
+    <table>
+        <thead>
+            <tr>
+                <td class="text-center" colspan="6">
+                    <a asp-controller="Maintenance" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-sm btn-success"> Add Maintenance Action</a>
+                </td>
+            </tr>
+
+            <tr> <td colspan="6"> <hr /> </td> </tr>
+        </thead>
+
+        <thead class="thead-dark">
+            <tr>
+                <th class="pr-1 text-center"> Date: </th>
+                <th class="pr-1 text-center"> Maintenance Action: </th>
+                <th class="pr-1 text-center"> Mileage: </th>
+                <th class="pr-1 text-center"> Cost: </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (MX mx in Model.MXs)
+            {
+                <tr>
+                    <td class="pr-1"> @mx.Date.ToString("MM-dd-yyy") </td>
+                    <td class="pr-1"> @mx.Action</td>
+                    <td class="pr-1"> @mx.Mileage.ToString("N2") </td>
+                    <td class="pr-1"> @mx.Cost.ToString("C") </td>
+                    <td>
+                        <a asp-controller="Maintenance" asp-action="Details" asp-route-id="@mx.Id" class="btn btn-sm btn-primary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</fieldset>
+
+<fieldset class="border d-inline-block mb-3 mr-4 p-3 pt-0 shadow align-top">
+    <legend> Rides </legend>
+
+    <table>
+
+        <thead>
+            <tr>
+                <td class="text-right" colspan="11">
+                    <a asp-controller="Ride" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-sm btn-success"> Add Ride </a>
+                </td>
+            </tr>
+
+            <tr> <td colspan="11"> <hr /> </td> </tr>
+        </thead>
+        <thead class="thead-dark">
+            <tr>
+                <th class="pr-1 text-center"> Date: </th>
+                <th class="pr-1 text-center"> Time: </th>
+                <th class="pr-1 text-center"> Distance: </th>
+                <th class="pr-1 text-center"> Average Cadence: </th>
+                <th class="pr-1 text-center"> Average Heart Rate: </th>
+                <th class="pr-1 text-center"> Average Speed: </th>
+                <th class="pr-1 text-center"> Total Ascent: </th>
+                <th class="pr-1 text-center"> Total Descent: </th>
+                <th class="pr-1 text-center"> Highest Grade: </th>
+                <th class="pr-1 text-center"> Lowest Grade: </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (Ride r in Model.Rides)
+            {
+                <tr>
+                    <td class="pr-1 text-center"> @r.Date.ToString("MM-dd-yyy") </td>
+                    <td class="pr-1 text-center"> @r.Time</td>
+                    <td class="pr-1 text-center"> @r.Distance.ToString("N2")</td>
+                    <td class="pr-1 text-center"> @r.AvgCadence</td>
+                    <td class="pr-1 text-center"> @r.AvgHR</td>
+                    <td class="pr-1 text-center"> @r.AvgSpeed.ToString("N1")</td>
+                    <td class="pr-1 text-center"> @r.Ascent</td>
+                    <td class="pr-1 text-center"> @r.Descent</td>
+                    <td class="pr-1 text-center"> @r.HighGrade.ToString("N1")</td>
+                    <td class="pr-1 text-center"> @r.LowGrade.ToString("N1")</td>
+                    <td>
+                        <a asp-controller="Ride" asp-action="Details" asp-route-id="@r.Id" class="btn btn-sm btn-primary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</fieldset>

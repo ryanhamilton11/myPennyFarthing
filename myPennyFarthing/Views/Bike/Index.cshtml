@@ -1,0 +1,37 @@
+﻿@model IQueryable<Bike>
+
+<fieldset class="border d-inline-block p-3 shadow">
+    <legend> Bikes </legend>
+
+    <table>
+        <thead>
+            @foreach (Bike b in Model)
+            {
+                <tr>
+                    <td>
+                        @b.Year
+                        @b.Make
+                        @b.Model
+                    </td>
+
+                    <td>
+                        <a asp-controller="Bike" asp-action="Details" asp-route-id="@b.Id" class="btn btn-sm btn-primary"> Details </a>
+                    </td>
+                </tr>
+            }
+        </thead>
+
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center" colspan="2">
+                    <a asp-controller="Bike" asp-action="Add" class="btn btn-sm btn-outline-success"> Add A Bike </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</fieldset>

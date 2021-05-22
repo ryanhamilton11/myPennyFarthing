@@ -1,0 +1,90 @@
+﻿@model Ride
+
+<fieldset class="border d-inline-block p-3 shadow">
+    <legend> Delete Ride </legend>
+
+    <table>
+        <tbody>
+            <tr>
+                <th class="pr-1 text-right"> Date: </th>
+                <td class="pl-1"> @Model.Date </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Elapsed Time: </th>
+                <td class="pl-1"> @Model.Time </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Distance: </th>
+                <td class="pl-1"> @Model.Distance </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Average Cadence: </th>
+                <td class="pl-1"> @Model.AvgCadence </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Average Heart Rate: </th>
+                <td class="pl-1"> @Model.AvgHR </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Avgerage Speed: </th>
+                <td class="pl-1"> @Model.AvgSpeed </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Total Ascent: </th>
+                <td class="pl-1"> @Model.Ascent </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Total Descent: </th>
+                <td class="pl-1"> @Model.Descent </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Highest Grade: </th>
+                <td class="pl-1"> @Model.HighGrade </td>
+            </tr>
+
+            <tr>
+                <th class="pr-1 text-right"> Lowest Grade: </th>
+                <td class="pl-1"> @Model.LowGrade </td>
+            </tr>
+
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-center" colspan="2">
+                    <span class="text-center text-danger pl-2 pr-2"> Are you sure? </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="text-center" colspan="2">
+                    <form method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" value="Delete Ride" class="btn btn-sm btn-danger mr-1" />
+                        <a asp-controller="Ride" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-sm btn-dark ml-1"> Cancel </a>
+                    </form>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</fieldset>

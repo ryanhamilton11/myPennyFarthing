@@ -1,0 +1,80 @@
+﻿@model Ride
+
+<fieldset class="border d-inline-block p-3 shadow">
+    <legend> Edit Ride </legend>
+
+    <form method="post">
+        <table>
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <thead>
+                    <tr>
+                        <td colspan="2">
+                            <div asp-validation-summary="All" class="text-danger"> </div>
+                        </td>
+                    </tr>
+
+                    <tr> <td class="pl-2 pr-2" colspan="2"> <hr /> </td> </tr>
+                </thead>
+            }
+
+            <tbody>
+                <tr>
+                    <th class="pr-1 text-right"> Date: </th>
+                    <td class="pl-1"> <input asp-for="Date" class="rounded" required /> </td>
+                </tr>
+
+                <tr>
+                    <th class="pr-1 text-right"> Time: </th>
+                    <td class="pl-1"> <input asp-for="Time" class="rounded" required /> </td>
+                </tr>
+
+                <tr>
+                    <th class="pr-1 text-right"> Average Cadence: </th>
+                    <td class="pl-1"> <input asp-for="Distance" class="rounded" required /> </td>
+                </tr>
+
+                <tr>
+                    <th class="pr-1 text-right"> Average Cadence: </th>
+                    <td class="pl-1"> <input asp-for="AvgCadence" class="rounded" required /> </td>
+                </tr>
+
+                <tr>
+                    <th class="pr-1 text-right"> Average Heart Rate: </th>
+                    <td class="pl-1"> <input asp-for="AvgHR" class="rounded" required /> </td>
+                </tr>
+                <tr>
+                    <th class="pr-1 text-right"> Average Speed: </th>
+                    <td class="pl-1"> <input asp-for="AvgSpeed" class="rounded" required /> </td>
+                </tr>
+                <tr>
+                    <th class="pr-1 text-right"> Total Ascent: </th>
+                    <td class="pl-1"> <input asp-for="Ascent" class="rounded" required /> </td>
+                </tr>
+                <tr>
+                    <th class="pr-1 text-right"> Total Descent: </th>
+                    <td class="pl-1"> <input asp-for="Descent" class="rounded" required /> </td>
+                </tr>
+                <tr>
+                    <th class="pr-1 text-right"> Highest Grade: </th>
+                    <td class="pl-1"> <input asp-for="HighGrade" class="rounded" required /> </td>
+                </tr>
+                <tr>
+                    <th class="pr-1 text-right"> Lowest Grade: </th>
+                    <td class="pl-1"> <input asp-for="LowGrade" class="rounded" required /> </td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr> <td class="pl-2 pr-2" colspan="2"> <hr /> </td> </tr>
+
+                <tr>
+                    <td class="text-center" colspan="2">
+                        <input class="btn btn-sm btn-success mr-1" type="submit" value="Save" />
+                        <a asp-controller="Ride" asp-action="Index" class="btn btn-sm btn-light ml-1"> Cancel </a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+</fieldset>

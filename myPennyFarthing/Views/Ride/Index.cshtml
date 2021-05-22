@@ -1,0 +1,32 @@
+﻿@model IQueryable<Ride>
+
+<fieldset class="border d-inline-block p-3 shadow">
+    <legend> Maintenance </legend>
+
+    <table>
+        <thead>
+            @foreach (Ride r in Model)
+            {
+                <tr>
+                    <td>
+                        @r.Date
+                        @r.Distance
+                        @r.AvgSpeed
+                    </td>
+
+                    <td>
+                        <a asp-controller="Ride" asp-action="Details" asp-route-id="@r.Id" class="btn btn-sm btn-primary"> Details </a>
+                    </td>
+                </tr>
+            }
+        </thead>
+        <tbody>
+            <tr> <td colspan="2"> <hr /> </td> </tr>
+            <tr>
+                <td class="text-center" colspan="2">
+                    <a asp-controller="Ride" asp-action="Add" class="btn btn-sm btn-outline-success"> Add Ride </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</fieldset>
