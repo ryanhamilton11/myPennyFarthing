@@ -25,9 +25,10 @@ namespace myPennyFarthing.Controllers
         //   M E T H O D S
         //   C R E A T E
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(int bikeid)
         {
-            return View();
+            MX mx = new MX { Date = DateTime.Now.Date, BikeId = bikeid };
+            return View(mx);
         }
 
         [HttpPost]
@@ -36,17 +37,21 @@ namespace myPennyFarthing.Controllers
             if (ModelState.IsValid)
             {
                 _repository.Create(mx);
-                return RedirectToAction("Details");
+                return RedirectToAction("Details", new { id = mx.Id });
             }
             return View(mx);
         }
 
 
-        //   R E A D
+        //  R E A D
         public IActionResult Index(int id)
         {
-            IQueryable<MX> mxs = _repository.GetAllMXs(id);
-            return View(mxs);
+            MX mx = _repository.GetMXById(id);
+            if (mx == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(mx);
         }
 
 
@@ -55,7 +60,7 @@ namespace myPennyFarthing.Controllers
             MX mx = _repository.GetMXById(id);
             if (mx == null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Bike");
             }
             return View(mx);
         }
@@ -75,7 +80,7 @@ namespace myPennyFarthing.Controllers
             if (ModelState.IsValid)
             {
                 _repository.Update(mx);
-                return RedirectToAction("Details");
+                return RedirectToAction("Details", new { id = mx.Id });
             }
             return View(mx);
         }
@@ -85,14 +90,19 @@ namespace myPennyFarthing.Controllers
         public IActionResult Delete(int id)
         {
             MX mx = _repository.GetMXById(id);
+            if (mx == null)
+            {
+                return RedirectToAction("Index, Bike");
+            }
             return View(mx);
         }
 
         [HttpPost]
         public IActionResult Delete(MX mx)
         {
+            int bikeId = mx.BikeId;
             _repository.Delete(mx);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Bike", new { id = bikeId });
         }
     }
 }

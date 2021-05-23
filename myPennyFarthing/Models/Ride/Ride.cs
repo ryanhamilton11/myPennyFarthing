@@ -15,7 +15,7 @@ namespace myPennyFarthing.Models
 
         [DataType(DataType.Time)]
         [UIHint("time")]
-        public DateTime Time { get; set; }
+        public TimeSpan Time { get; set; }
 
         [Column(TypeName = "float(5,2)")]
         [UIHint("number")]

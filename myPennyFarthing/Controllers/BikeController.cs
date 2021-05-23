@@ -27,7 +27,7 @@ namespace myPennyFarthing.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View(new Bike { Year = DateTime.Now.Year });
         }
 
         [HttpPost]
@@ -36,7 +36,7 @@ namespace myPennyFarthing.Controllers
             if (ModelState.IsValid)
             {
                 _repository.Create(b);
-                return RedirectToAction("Details");
+                return RedirectToAction("Details", new { id = b.Id });
             }
             return View(b);
         }
@@ -45,8 +45,7 @@ namespace myPennyFarthing.Controllers
         //   R E A D
         public IActionResult Index()
         {
-            IQueryable<Bike> bikes = _repository.GetAllBikes();
-            return View(bikes);
+            return View(_repository.GetAllBikes().OrderBy(b => b.Year));
         }
 
 
@@ -66,6 +65,10 @@ namespace myPennyFarthing.Controllers
         public  IActionResult Edit(int id)
         {
             Bike b = _repository.GetBikeById(id);
+            if (b == null)
+            {
+                return RedirectToAction("Index", "Bike");
+            }
             return View(b);
         }
 
@@ -75,7 +78,7 @@ namespace myPennyFarthing.Controllers
             if (ModelState.IsValid)
             {
                 _repository.Update(b);
-                return RedirectToAction("Details");
+                return RedirectToAction("Details", new { id = b.Id });
             }
             return View(b);
         }
@@ -85,6 +88,10 @@ namespace myPennyFarthing.Controllers
         public IActionResult Delete(int id)
         {
             Bike b = _repository.GetBikeById(id);
+            if (b == null)
+            {
+                return RedirectToAction("Index");
+            }
             return View(b);
         }
 

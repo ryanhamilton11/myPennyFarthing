@@ -49,7 +49,14 @@ namespace myPennyFarthing.Models
             if(_userRepository.IsUserLoggedIn())
             {
                 Bike b = _context.Bikes
-                                 .FirstOrDefault(b => b.UserId == _userRepository.GetLoggedInUserId());
+                                 .Include(b => b.MXs)
+                                 .Include(b => b.Rides)
+                                 .FirstOrDefault(b => b.Id == id && b.UserId == _userRepository.GetLoggedInUserId());
+                if (b != null)
+                {
+                    b.MXs = b.MXs.OrderByDescending(b => b.Date);
+                    b.Rides = b.Rides.OrderByDescending(b => b.Date);
+                }
                 return b;
             }
             return null;

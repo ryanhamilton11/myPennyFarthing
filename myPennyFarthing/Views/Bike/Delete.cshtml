@@ -1,55 +1,59 @@
 ﻿@model Bike
 
 <fieldset class="border d-inline-block p-3 shadow">
-    <legend> Add A Bike </legend>
+    <legend> Delete Bike </legend>
 
-    <form method="post">
-        <table>
-            @if (ViewData.ModelState.ErrorCount > 0)
-            {
-                <thead>
-                    <tr>
-                        <td colspan="2">
-                            <div asp-validation-summary="All" class="text-danger"> </div>
-                        </td>
-                    </tr>
+    <table>
+        <tbody>
+            <tr>
+                <th class="pr-1 text-right"> Year: </th>
+                <td class="pl-1"> @Model.Year </td>
+            </tr>
 
-                    <tr> <td class="pl-2 pr-2" colspan="2"> <hr /> </td> </tr>
-                </thead>
-            }
+            <tr>
+                <th class="pr-1 text-right"> Make: </th>
+                <td class="pl-1"> @Model.Make </td>
+            </tr>
 
-            <tbody>
-                <tr>
-                    <th class="pr-1 text-right"> Year: </th>
-                    <td class="pl-1"> <input asp-for="Year" class="rounded" required /> </td>
-                </tr>
+            <tr>
+                <th class="pr-1 text-right"> Model: </th>
+                <td class="pl-1"> @Model.Model </td>
+            </tr>
 
-                <tr>
-                    <th class="pr-1 text-right"> Make: </th>
-                    <td class="pl-1"> <input asp-for="Make" class="rounded" required /> </td>
-                </tr>
+            <tr>
+                <th class="pr-1 text-right"> Color: </th>
+                <td class="pl-1"> @Model.Color </td>
+            </tr>
+        </tbody>
 
-                <tr>
-                    <th class="pr-1 text-right"> Model: </th>
-                    <td class="pl-1"> <input asp-for="Model" class="rounded" required /> </td>
-                </tr>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
 
-                <tr>
-                    <th class="pr-1 text-right"> Color: </th>
-                    <td class="pl-1"> <input asp-for="Color" class="rounded" required /> </td>
-                </tr>
-            </tbody>
+            <tr>
+                <td class="text-center" colspan="2">
+                    <span class="text-center text-danger pl-2 pr-2"> Are you sure? </span>
+                </td>
+            </tr>
 
-            <tfoot>
-                <tr> <td class="pl-2 pr-2" colspan="2"> <hr /> </td> </tr>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
 
-                <tr>
-                    <td class="text-center" colspan="2">
-                        <input class="btn btn-sm btn-success mr-1" type="submit" value="Add Bike" />
-                        <a asp-controller="Bike" asp-action="Index" class="btn btn-sm btn-dark ml-1"> Cancel </a>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-    </form>
+            <tr>
+                <td class="text-center" colspan="2">
+                    <form method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" value="Delete Bike" class="btn btn-sm btn-danger mr-1" />
+                        <a asp-controller="Bike" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-sm btn-light ml-1"> Cancel </a>
+                    </form>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
 </fieldset>

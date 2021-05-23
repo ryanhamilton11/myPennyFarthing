@@ -17,7 +17,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     @if (_userRepository.IsUserLoggedIn())
                     {
@@ -25,12 +25,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Bike" asp-action="Index">Bikes</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="MX" asp-action="Index">Maintenance</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Ride" asp-action="Index">Rides</a>
-                            </li>
+                            @*<li class="nav-item">
+                                    <a class="nav-link" asp-controller="MX" asp-action="Index">Maintenance</a>
+                                </li>*@
+
+                            @*<li class="nav-item">
+                                    <a class="nav-link" asp-controller="Ride" asp-action="Index">Rides</a>
+                                </li> *@
                         </ul>
 
                         <ul class="navbar-nav ml-auto">
@@ -66,7 +67,6 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - myPennyFarthing

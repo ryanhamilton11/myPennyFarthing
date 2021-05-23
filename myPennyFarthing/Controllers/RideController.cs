@@ -25,9 +25,10 @@ namespace myPennyFarthing.Controllers
         //   M E T H O D S
         //   C R E A T E
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(int bikeid)
         {
-            return View();
+            Ride r = new Ride { Date = DateTime.Now, BikeId = bikeid };
+            return View(r);
         }
 
         [HttpPost]
@@ -36,17 +37,21 @@ namespace myPennyFarthing.Controllers
             if (ModelState.IsValid)
             {
                 _repository.Create(r);
-                return RedirectToAction("Details");
+                return RedirectToAction("Details", new { id = r.Id });
             }
             return View(r);
         }
 
 
-        //   R E A D
+        //  R E A D
         public IActionResult Index(int id)
         {
-            IQueryable<Ride> rides = _repository.GetAllRides(id);
-            return View(rides);
+            Ride r = _repository.GetRideById(id);
+            if (r == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(r);
         }
 
 
@@ -55,7 +60,7 @@ namespace myPennyFarthing.Controllers
             Ride r = _repository.GetRideById(id);
             if (r == null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Bike");
             }
             return View(r);
         }
@@ -75,7 +80,7 @@ namespace myPennyFarthing.Controllers
             if (ModelState.IsValid)
             {
                 _repository.Update(r);
-                return RedirectToAction("Details");
+                return RedirectToAction("Details", new { id = r.Id });
             }
             return View(r);
         }
@@ -85,14 +90,19 @@ namespace myPennyFarthing.Controllers
         public IActionResult Delete(int id)
         {
             Ride r = _repository.GetRideById(id);
+            if (r == null)
+            {
+                return RedirectToAction("Index, Bike");
+            }
             return View(r);
         }
 
         [HttpPost]
         public IActionResult Delete(Ride r)
         {
+            int bikeId = r.BikeId;
             _repository.Delete(r);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Bike", new { id = bikeId });
         }
     }
 }
