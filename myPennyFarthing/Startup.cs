@@ -30,7 +30,7 @@ namespace myPennyFarthing
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>
-                (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                (options => options.UseSqlServer(Configuration.GetConnectionString("AzureDatabase")));
 
             services.AddScoped<IBikeRepository, EfBikeRepository>();
             services.AddScoped<IMXRepository, EfMXRepository>();
